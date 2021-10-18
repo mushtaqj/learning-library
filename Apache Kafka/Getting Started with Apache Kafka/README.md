@@ -205,7 +205,170 @@ This is a bit tricky, the consumer checks with Zookeeper about the brokers and t
 
 ![alt](Images/how-consumers-initiate-messages-to-brokers-with-partition.png)
 
+#### Partitioning Trade-offs
+
+- The more partiions the greater the Zookeeper overhead, as it is the lynchpin which provides all the
+  meta information about the broker cluster and the relevant partitions they have, so the more partitions,
+  the more entires it needs to maintain and can become resoruce constrained very quickly
+  - Ensure that large partition numbers ensure proper ZK capacity
+- Message ordering can become complex, since Kafka messages are time-ordered, maintiainin a global order is a must to
+  prevent conflicts
+  - Single partition for global ordering, however this again brings back the issue of scalability
+  - Another way to handle this is consumer-handling for  ordering, where the consumer handles the ordering across the
+    partitions
+- The more partitions the longer the leader fail-over time
+
+#### Achiveving Reliability with Apache Kafka Replication (Fault Tolerence)
+
+How can we work our way across failures in brokers ?
+In the event of a broker failing, ZK relegates the responsibilty of the the failed brokers partion to another
+available borker in the cluster and updates the metadata for the other brokers, producer and consumers. However the
+problem is that there is no way to recover the lost brokers messages as there is no redundancy between nodes
+
+![No reduncany between nodes](Images/no-redundancy-between-nodes.png)
+
+```cmd
+bin/kafka-topics.sh --create --topic my_topic \
+--zookeeper localhost:2191 \
+--partitions 3 \
+--replication-factor 1 \\Adds fault tolerence between nodes
+```
+
+#### Replication Factor
+
+- Reliable work distribution
+  - Redundancy of messages
+  - Cluster resiliency
+  - Fault-tolerance
+- Gurantees
+  - N-1 broker failure
+  - 2 or 3 minumum replication factor
+- Configured on a per-topic-basis
+
+Multiple Replica Sets
+
+![multiple-set-replicas-how-it-works](Images/multiple-set-replicas-how-it-works.png)
+
+ISR is the kye metric here, it stands for In Sync Replicas
+
+```cmd
+bin/kafka-topics.sh --create --topic my_topic \
+--zookeeper localhost:2191 \
+--partitions 3 \
+--replication-factor 3 \\Adds fault tolerence between nodes
+```
+
+In the event the ISR for a given quorum falls below the configured replica ISR, Kafka does not automatically tries to add new peers to the failing quorum, hence constant and vigilant monitoring is the key here
+
+Viewing Topic State
+
+```cmd
+bin/kafka-topics.sh --describe --topic my_topic \
+--zookeeper localhost:2191 \
+```
+
 ## Producing Messages with Kafka Producers
+
+### Kafka Producer Internals
+
+The complete Kafka producer internals diagram
+
+![Apache Kafka Producer](Images/kakfka-proucer-internsl-complete-diagram.png)
+
+1. Creating a Kafka producer
+
+![Slide 1](Images/creating-kafka-producer-slide-1.png)
+
+```java
+
+final Properties properties = new Properties();
+
+properties.put("boostrap.servers", "BROKER-1:9092, BROKER-1:9093");
+properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+final KafkaProducer<String, String> myProducer = new KafkaProducer<>(properties);
+
+```
+
+![Slide 2](Images/kafka-basic-producer.png)
+
+Kafka does not produce messages, it produces records which are sent as messages
+![Slide 3](Images/kafka-producer-records.png)
+
+```java
+final ProducerRecord<String, String> record = new ProducerRecord<>("my_topic", "My Message 1");
+
+myProducer.send(record, (recordMetadata, e) -> {
+  //Handle callback on message sent
+});
+
+```
+
+**Kafka Producer instances can only send ProducerRecords that match the key and value
+serializers types it is configured with**
+
+The Key best practice
+
+![They Key best practice](Images/key-best-practice.png)
+
+#### Sending the Message, Part 1
+
+When the producer sends a record, the bootstrap.servers is used to ping the available brokers, which then
+send out a Metadata object which contains information about the topics, their partition and managing brokers, and throughtout the lifecycle of the producer this Metadata object is constantly updated.
+
+![Sending the message](Images/on%20produce-send-method.png)
+
+After receiving the meta data, the producer establishes a pseudo pipleine which parses the message with the configured serializer, the next step in the pipeline is the partitioner whose job is to determine which partition to send the record to, the producer can employ different stratergies to determine this information and send it in the ProducerRecord
+![When he producer establishes the pseudo pipeline](Images/producer-psuedo-pipeline.png)
+
+#### kafka Proudcer Partioning Stratergy
+
+![Partioning Stratergy](Images/partioner-producer-stratergy.png)
+
+#### Sending the Message, Part 2
+
+Micro-batching in Apache kafka
+
+- At scale, efficiency is everything
+- Small, fast batches of messages:
+  - Sending (Producer)
+  - Writing (Broker)
+  - Reading (Consumer)
+- Modern operating system functions
+  - Pagecache
+  - Linux sendFile() system call (kernal)
+- Amortization of the constant cost
+
+RecordAccumulator gives the produer the ability to micro-batch the records intended to be sent in high frequency and volumes
+
+![Record accumulator](Images/record-accumuator.png)
+
+Message Buffering
+
+![Message buffering](Images/message-buffering.png)
+
+![When the message is sent to the broker](Images/final-send-workflow.png)
+
+#### Delivery Gurantees
+
+- Broker acknowledement ("acks")
+  - 0: fire and forget, less reliable since the producer has no way of knowing if the message has been sent, but is the fastest
+  - 1: leader acknowledged , only the leader responds with an acknowledgement, not the replicas, sweet spot for performance and reliability
+  - 2: replication quorum acknowledged, all the ISR's respond with acknowledgement, highest reliability also the slowest
+- Broker responds with error
+  - "retiries"
+  - "retry.backoff.ms"
+
+#### Ordering Gurantees
+
+- Message order by partition
+  - No global order across partitions
+- Can get complicated with errors
+  - retries, retry.backoff.ms
+  - max.in.flight.request.per.connection : at any given moment there can only be one message in-flight
+- Delivery semantics
+  - At-most-once, at-least-once, only-once
 
 ## Consuming Messages with Kafka Consumers and Consumer Groups
 
