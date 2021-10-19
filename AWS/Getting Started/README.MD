@@ -48,12 +48,57 @@ Been in the game since 2006 and has over 35% of the cloud market share.
   ![AWS lambda](images/aws-lambda.png)
 - AWS LoadBalancer : distribuutes incoming application or network traffic across multiple targets, such as Amazon EC2 instance, containers, and IP addresses, in multiple Availability Zones
 ![Elastic loadbalancer](images/elastic-loadbalancer.png)
+- AWS Auto Scaling : monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost. It always have to work with in conjunction with the AWS loadbalancer.
+![Auto Scaling](images/aws-auto-scaling.png)
+- AWS ECR : Amazon Elastic Container Registry is a fully-managed Docker container registry that makes it easy for developers to store, manage and deploy Docker container images, simillar to dockerhub.
+- AWS ECS : Amazon Elastic Container Service is a higly scalable, high-performance container orchestration servie that supports Docker containers and allows you to easily run and scale containerized application on AWS.
 
 #### Storage
 
+![Amazon Services Storage](images/amazon-services-storage.png)
+
+- Amazon S3 : Amazon Simple Storage Service is an object storage service that offers industry-leading scalability, data-availability, security and performance.
+  ![Sclaing](images/amazon-simple-storage-service.png)
+- Amazon Glacier : is a secure, durable, and extremely low-cost cloud storage service for data archiving and long-term backup. Used to take backups of S3 buckets and manage them, usually used as a backup service.
+  ![glacier](images/amazon-s3-glacier.png)
+- Amazon EFS : Elastic File System is a network drive which can mount to an EC2 and handle uploads as if it were doing it on a local drive, but has the benefit or being shared and instantly available for all the other users of the app.
+  ![EFS](images/amazon-efs.png)
+- AWS Storage Gateway : Connects on-premise software appliance with cloud based storage to provide seamless integration with data security features between your on-premise software and the AWS storage infrastructure.
+  ![Storage Gateway](images/aws-storage-gateway.png)
+
+### Database
+
+![Database](images/amazon-services-database.png)
+
+- Amazon RDS : Relation Database Service makes it easy to set up, operate, and scale a relational database in the cloud.
+  ![RDS](images/amazon-rds.png)
+- DyamoDB : is a key-value and document database that delivers single-digit millisecond performance scale, think firebase but created by Amazon.
+  ![Dynamo DB](images/dynamo-db.png)
+- Amazon RedShift : Is a data warehouse provided by amazon, which comprises of multiple databases and provides and interface which can be used to analyze your data warehouse and data lake.
+  ![RedShift](images/redshift.png)
+- ElastiCache : Think of something like Redis which is a cache between the server and the client
+  ![ElastiCache](images/elasticache.png)
+
 #### Security
 
+![AWS Security](images/aws-security.png)
+
+- IAM : AWS Identity and Access Management enables you to manage access to AWS services and resources securely. This can be used to authenticate uses who will be able to configure and access the cloud servies as well as apps which will then be able to access the cloud resources like an app requiring access to the s3 bucket.
+  ![IAM](images/aws-security-iam.png)
+
+- AWS KMS : Key Management Service makes it easy for you to create and manage keys and control use of encryption across a wide range of AWS services.
+![KMS](images/aws-security-kms.png)
+
 #### Management
+
+![Management](images/aws-services-management.png)
+
+- AWS CloudFormation : provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. This is bascially infrastructure as code in a gist, it is used to templatize an AWS Infrastructure.
+  ![Cloud Formation](images/aws-management-cloudformation.png)
+- AWS OpsWorks : is a configuration management service that provides managed instances of Chef and Puppet. Chef & Puppet are automation platforms. Think of it like Cloudformation but built in a layered style like docker using Chef and Puppet
+  ![OpsWorks](images/aws-management-opsworks.png)
+- AWS CloudTrail
+- AWS CloudWatch
 
 #### Customer Engagement
 
