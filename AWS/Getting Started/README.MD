@@ -117,5 +117,13 @@ Been in the game since 2006 and has over 35% of the cloud market share.
 
 - Simple Notification Service : SNS is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems and serveless apps.
   ![SNS](images/aws-sns.png)
-- Simple Queue Service : is a fully managed mesage queuing service that enables you to decouple and scale microservice, distributed systems and serveless apps. 
+- Simple Queue Service : is a fully managed mesage queuing service that enables you to decouple and scale microservice, distributed systems and serveless apps.
   ![Simple Queue Service](images/aws-sqs.png)
+
+### AWS Pricing
+
+![AWS Pricing](images/aws-pricing.png)
+
+- Pay as you go : Only pay for what you use and for how long you use it
+- Save when you reserve : Get a discount when you reserve for the long term, pay partial or in full.
+- Pay less by using more : The more the usage, the cost will be low
