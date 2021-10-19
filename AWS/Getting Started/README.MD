@@ -93,14 +93,28 @@ Been in the game since 2006 and has over 35% of the cloud market share.
 
 ![Management](images/aws-services-management.png)
 
-- AWS CloudFormation : provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. This is bascially infrastructure as code in a gist, it is used to templatize an AWS Infrastructure.
+- AWS CloudFormation : provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. This is bascially infrastructure as code in a gist, it is used to templatize an AWS Architecture Infrastructure like creating setting up a s3 bucket, creating a DB etc...
   ![Cloud Formation](images/aws-management-cloudformation.png)
 - AWS OpsWorks : is a configuration management service that provides managed instances of Chef and Puppet. Chef & Puppet are automation platforms. Think of it like Cloudformation but built in a layered style like docker using Chef and Puppet
   ![OpsWorks](images/aws-management-opsworks.png)
-- AWS CloudTrail
-- AWS CloudWatch
+- AWS CloudTrail : is a service that enable governanance, compliance, operational auditing, and risk auditing of your AWS account. With CloudTrail, you can log continously monitor, and retain account activity related to actions your AWS infrastructure.
+  ![Cloud trail](images/aws-cloud-trail.png)
+- AWS CloudWatch : is a monitoring and management service built for devs, sys ops, site reliabilty engineers to configure real time alarm on the AWS resources and act on the alarms like notifying the relevant people or creating new architecture to handle the resiliency.
+  ![cloud watch](images/aws-cloud-watch.png)
 
 #### Customer Engagement
 
+![Customer Engagement](images/amazon-services-customer-engagement.png)
+
+- Amazon Connect : to setup customer support for companies, it takes less than 5 minutes to get customer support.
+  ![Connect](images/aws-connect.png)
+- Simple Email : is a cloud based email sending service designed to help digital marketers and app developers send markertng, notification and trasactional mails.
+  ![Simple Email](images/aws-simple-email-service.png)
+
 #### App Integration
 
+![App Integration](images/app-integration.png)
+
+- Simple Notification Service : SNS is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems and serveless apps.
+  ![SNS](images/aws-sns.png)
+- Simple Queue Service
