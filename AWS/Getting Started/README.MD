@@ -127,3 +127,4 @@ Been in the game since 2006 and has over 35% of the cloud market share.
 - Pay as you go : Only pay for what you use and for how long you use it
 - Save when you reserve : Get a discount when you reserve for the long term, pay partial or in full.
 - Pay less by using more : The more the usage, the cost will be low
+- Spot Pricing : Off peak pricing using bids, catch is that you will not be able to keep this for hours, if there is a higher bidder.
