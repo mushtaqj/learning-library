@@ -33,9 +33,9 @@ Reverse proxies hide the client, the client does not know who the responding ser
 
 - Load Balancing
 - Caching
-- Isolating internal traffic
+- Isolating internal traffic : Can create a DMZ past the reverse proxy and can hide ports and IPS from external web
 - Logging
-- Canary Deployment
+- Canary Deployment : One server can host a much newer version of the application and rollout features to a small userbase.
 
 ## References
 
