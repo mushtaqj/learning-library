@@ -68,9 +68,21 @@ Given that creating an index requires additional disk space (277,778 blocks extr
 
 Since indices are only used to speed up the searching for a matching field within the records, it stands to reason that indexing fields used only for output would be simply a waste of disk space and processing time when doing an insert or delete operation, and thus should be avoided. Also given the nature of a binary search, the cardinality or uniqueness of the data is important. Indexing on a field with a cardinality of 2 would split the data in half, whereas a cardinality of 1,000 would return approximately 1,000 records. With such a low cardinality the effectiveness is reduced to a linear sort, and the query optimizer will avoid using the index if the cardinality is less than 30% of the record number, effectively making the index a waste of space.
 
+## MySQL InnoDB Vs Postgres Indexing Stratergies
+
+![MySQL Vs InnoDB indexing Stratergy](images/different-indexing-stratergies-myql-vs-postgres.png)
+
+Postgres attaches indexes directly to the table, so an update or delete on the table could slow down because multiple
+indexes will have to fight for resources.
+
+However MySQL InnoDB creates a index only on the primary key and any other index attached to the table would be set to
+the primary key index, so it would only get re-indexed only when the primary key is deleted or there is an update,
+increasing write speeds.
+
 ## Further Reading
 
-- [Database Indexing Explained (with PostgreSQL)](https://www.youtube.com/watch?v=-qNSXK7s7_w&ab_channel=HusseinNasser)
+- [Indexing in PostgreSQL vs MySQL - Youtube](https://www.youtube.com/watch?v=T9n_-_oLrbM&ab_channel=HusseinNasser)
+- [Database Indexing Explained (with PostgreSQL) - Youtube](https://www.youtube.com/watch?v=-qNSXK7s7_w&ab_channel=HusseinNasser)
 - [Indexing in Databases | Set 1]([https://link](https://www.geeksforgeeks.org/indexing-in-databases-set-1/))
 - [Top 10 performance tuning tips for relational databases](https://www.synametrics.com/SynametricsWebApp/WPTop10Tips.jsp)
 - [Query optimization techniques in SQL Server: Database Design and Architecture](https://www.sqlshack.com/query-optimization-techniques-in-sql-server-database-design-and-architecture/)
