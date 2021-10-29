@@ -81,7 +81,7 @@ increasing write speeds.
 
 - [Indexing in PostgreSQL vs MySQL - Youtube](https://www.youtube.com/watch?v=T9n_-_oLrbM&ab_channel=HusseinNasser)
 - [Database Indexing Explained (with PostgreSQL) - Youtube](https://www.youtube.com/watch?v=-qNSXK7s7_w&ab_channel=HusseinNasser)
-- [Indexing in Databases Set 1]([https://link](https://www.geeksforgeeks.org/indexing-in-databases-set-1/))
+- [Indexing in Databases Set 1](https://www.geeksforgeeks.org/indexing-in-databases-set-1/)
 - [Top 10 performance tuning tips for relational databases](https://www.synametrics.com/SynametricsWebApp/WPTop10Tips.jsp)
 - [Query optimization techniques in SQL Server: Database Design and Architecture](https://www.sqlshack.com/query-optimization-techniques-in-sql-server-database-design-and-architecture/)
 - [Indexing in DBMS: What is, Types of Indexes with EXAMPLES](https://www.guru99.com/indexing-in-database.html)
