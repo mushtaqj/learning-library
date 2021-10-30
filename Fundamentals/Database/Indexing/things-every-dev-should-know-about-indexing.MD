@@ -37,7 +37,7 @@ Benefits
 
 The tree will have to re-balanced on each and every DML query to the table.
 
-## Understanding he execution Plan
+## Understanding the execution Plan
 
 Steps the db engine needs to perfrom to execute the query.
 
@@ -58,3 +58,6 @@ Works on a subset of the index, finds a starting point and then traverses from t
 ![Ref Range Scan](images/2021-10-31-00-17-23.png)
 - INDEX
 ![Index](images/2021-10-31-00-19-52.png)
+- ALL
+AVOID AT ALL COSTS !!!
+![ALL](images/2021-10-31-00-39-59.png)
