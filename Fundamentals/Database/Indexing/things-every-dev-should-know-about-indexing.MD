@@ -57,6 +57,7 @@ If you see thig stop optimizing, there is nothing much you can do.
 Works on a subset of the index, finds a starting point and then traverses from that point on till it meets the end clause.
 ![Ref Range Scan](images/2021-10-31-00-17-23.png)
 - INDEX
+Still hits the index a little bit faster than a full table scan
 ![Index](images/2021-10-31-00-19-52.png)
 - ALL
 AVOID AT ALL COSTS !!!
