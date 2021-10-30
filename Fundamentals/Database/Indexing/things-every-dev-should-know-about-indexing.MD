@@ -86,7 +86,7 @@ Specifies additional information in relation to the `types` column, usually indi
 - **Column Order Matters** [Jump to Video](https://youtu.be/HubezKbFL7E?t=2014)
   With multi column indexes, the column order matters as MCIs are evaluated from the left to the right.
   Consider the index table below
-  ![Multi Column Index sample](images\2021-10-31-01-53-26.png)
+  ![Multi Column Index sample](images/2021-10-31-01-53-26.png)
   As you can see the index is sorted first by the created at, then the total and finally the user id, if you were to add the user id to the where clause, this would still have to scan the entire index as the user id is the last, so the sorting order of the created at, total would take precedence after which the user id would be evaluated.
 - **Functions** [Jump to Video](https://youtu.be/HubezKbFL7E?t=1248)
   Queries which use functions in the where clause will completely ignore the index, even if one is in place and trying to force use the index will make the queries even slower, always trust the query planner.
