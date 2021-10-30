@@ -10,7 +10,7 @@ Focuses on the fundamental concepts of programming, rather than implementations,
 - Messaging Systems
 - Database
   - Connection Pooling
-  - Indexes
+  - [Indexes](Fundamentals/Database/Indexing/README.md)
   - Partitioning
   - Sharding
   - ACID Compliancy

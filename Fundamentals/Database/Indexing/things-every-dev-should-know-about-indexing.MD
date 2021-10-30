@@ -44,7 +44,7 @@ Steps the db engine needs to perfrom to execute the query.
 ![Sample Query Plan](images/2021-10-31-00-11-45.png)
 _A sample query plan_
 
-### **Type**
+### Type
 
 or Join type is just really actually the access type the query is going to use to access the data in the table.
 
@@ -62,3 +62,13 @@ Still hits the index a little bit faster than a full table scan
 - ALL
 AVOID AT ALL COSTS !!!
 ![ALL](images/2021-10-31-00-39-59.png)
+
+### Possible Keys
+
+The indexes the query planned had considered before executing the query
+
+### Keys
+
+The indexes the query used to execute the query
+
+_NOTE_ : Beware of keys which are 
