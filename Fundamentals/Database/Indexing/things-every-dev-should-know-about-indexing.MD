@@ -102,3 +102,7 @@ Index is a developer concern not a database expert query, it has to always has t
 
 Index only scans
 : Where a query only hits the indexes
+
+## Further Reading
+
+[What is a query Plan](https://dataschool.com/sql-optimization/what-is-a-query-plan/)

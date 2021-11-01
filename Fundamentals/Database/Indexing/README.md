@@ -8,9 +8,9 @@ Consider a telephone directory to find a phone number and the amount of time it 
 
 ## Database Indexing
 
-Table scanning in databases is usually slow, so indexes are needed to avoid scans and speed up the processes, be wary
-indexes are not the silver bullet for database performance, they come at a cost of space and memory, having too many
-indexes can be counter productive.
+Table scanning in databases is usually slow, so indexes are needed to avoid scans and speed up the processes, be wary indexes are not the silver bullet for database performance, they come at a cost of space and memory, having too many indexes can be counter productive.
+
+![Structure of an Index](images\2021-11-01-22-50-02.png)
 
 When data is stored on disk-based storage devices, it is stored as blocks of data. These blocks are accessed in their entirety, making them the atomic disk access operation. Disk blocks are structured in much the same way as linked lists; both contain a section for data, a pointer to the location of the next node (or block), and both need not be stored contiguously.
 
@@ -59,7 +59,6 @@ Given our sample database of r = 5,000,000 records with an index record length o
 
 Now a search using the firstName field can utilize the index to increase performance. This allows for a binary search of the index with an average of log2 277778 = 18.08 = 19 block accesses. To find the address of the actual record, which requires a further block access to read, bringing the total to 19 + 1 = 20 block accesses, a far cry from the 1,000,000 block accesses required to find a firstName match in the non-indexed table.
 
-
 ### When should it be used?
 
 Given that creating an index requires additional disk space (277,778 blocks extra from the above example, a ~28% increase), and that too many indices can cause issues arising from the file systems size limits, careful thought must be used to select the correct fields to index.
@@ -86,6 +85,13 @@ increasing write speeds.
 ## Things Every developer should know about Indexes
 
 [A few things to keep in mind when working with indexes](things-every-dev-should-know-about-indexing.MD)
+
+## When indexes are useless [Video](https://www.youtube.com/watch?v=oebtXK16WuU)
+
+1. When the column you are indexing on has a high frequency of the the same values.
+2. Adding functions to indexes for which the searchkey in the index does not include the function
+3. Composite indexes will always query from left hand side
+
 
 ## Further Reading
 
