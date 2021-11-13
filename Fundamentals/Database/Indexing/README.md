@@ -16,11 +16,11 @@ When data is stored on disk-based storage devices, it is stored as blocks of dat
 
 Visualization for finding the last entry:
 
-![Basic search](images/BasicsearchGif.gif)
+![Basic search](images/BasicSearchGif.gif)
 
 >If the table was ordered alphabetically, searching for a name could happen a lot faster because we could skip looking for the data in certain rows. If we wanted to search for “Zack” and we know the data is in alphabetical order we could jump down to halfway through the data to see if Zack comes before or after that row. We could then half the remaining rows and make the same comparison.
 
-![Basic search](images/BinarysearchGif.gif)
+![Basic search](images/BinarySearchGif.gif)
 
 Indexes allow us to create sorted lists without having to create all new sorted tables, which would take up a lot of storage space.
 
@@ -114,6 +114,10 @@ When data is written to the database, the original table (the clustered index) i
 ### What is the impact on Indexes on disk ?
 
 The downside to indexing is that these indices require additional space on the disk since the indices are stored together in a table using the MyISAM engine, this file can quickly reach the size limits of the underlying file system if many fields within the same table are indexed.
+
+### Clustered Vs Non-Clustered Index
+
+![Clusterd-Non-Clustered](images/2021-11-13-20-10-08.png)
 
 ## MySQL InnoDB Vs Postgres Indexing Stratergies
 
