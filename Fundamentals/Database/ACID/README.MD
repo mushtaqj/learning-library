@@ -77,6 +77,11 @@ immediately see the change?
   - Relational and NoSQL databases suffer from this
   - Eventual consistency
 
+### Eventual Consistency
+
+Even though there would could be inconsistencies in the data, over time the database would heal to ensure consistency,
+this is not the same as a referential integrity issue or data corruption.
+
 ## Durability
 
 Changes made by committed transactions must be persisted in a durable non-volatile storage. Even though this looks like a given, database engines can play around this with to show perceived performance during writes, like writing to a volatile storage(fast but temporary) and sync in the background to the involatile storage(slow and permanent). Redis does this.
