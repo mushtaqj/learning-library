@@ -16,4 +16,5 @@ Focuses on the fundamental concepts of programming, rather than implementations,
   - ACID Compliancy
   - Database Replication
   - Horizontal Scaling
-  - Vertical Sacling
+  - Vertical Scaling
+- [Networking](Networking/README.md)
